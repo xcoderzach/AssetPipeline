@@ -30,7 +30,6 @@ Example
     .to(__dirname + ":type/:modelName.coffee")
     .process(CompileCoffee)
     .process(SliceSensitiveMethods)
-    .process(AppendMD5ToFileName)
     .process(Modularize)
     .process(Minify)
 
