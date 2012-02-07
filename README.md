@@ -26,8 +26,8 @@ Example
   AssetPipe.addFiles(__dirname + "/app/")
 
   AssetPipe.script({module: true, baseDir: __dirname})
-    .from("/javascripts/:type/:modelName.js")
-    .to(__dirname + ":type/:modelName.coffee")
+    .url("/javascripts/:type/:modelName.js")
+    .file(__dirname + ":type/:modelName.coffee")
     .process(CompileCoffee)
     .process(SliceSensitiveMethods)
     .process(Modularize)
