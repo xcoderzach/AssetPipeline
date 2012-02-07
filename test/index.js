@@ -9,14 +9,22 @@ describe("AssetPipeline", function() {
       AssetPipe.addFiles(__dirname + "/scripts/")
 
       scriptPipe = AssetPipe.script()
-        .from(__dirname + "/:type/:modelName.js")
-        .to("/javascripts/:type/:modelName.js")
+        .file(__dirname + "/:type/:modelName.js")
+        .url("/javascripts/:type/:modelName.js")
     })
     describe(".getScripts()", function() {
       it("should get a list of matching files", function() {
         var scripts = scriptPipe.getScriptFiles()
         scripts.length.should.equal(2)
-        scripts.indexOf(path)
+        scripts.indexOf(path.resolve("./scripts/derp.js"))
+      })
+    })
+    describe(".get()", function() {
+      describe("with no middleware", function() {
+        it("should output the files", function() {
+          var script = scriptPipe.get("/javascripts/scripts/derp.js")
+          script.should.equal("derp()\n")
+        })
       })
     })
   })
