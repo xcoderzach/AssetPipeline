@@ -31,7 +31,7 @@ describe("AssetPipeline", function() {
     describe(".getScriptTags()", function() {
       it("should output the files", function() {
         var tags = scriptPipe.getScriptTags()
-        tags.should.eql(fs.readFileSync(__dirname + "/output/script_tags.html", "utf8"))
+        tags.should.equal(fs.readFileSync(__dirname"/output/script_tags.html"))
       })
     })
   })
