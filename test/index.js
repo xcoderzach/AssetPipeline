@@ -1,15 +1,17 @@
-var AssetPipe = require("../lib/index")()
+var AssetPipe = require("../lib/index")
   , path = require("path")
   , fs = require("fs")
   , scriptPipe
-AssetPipe.addFiles(__dirname + "/scripts/")
 
 describe("AssetPipeline", function() {
   describe(".script()", function() {
     describe("with no middleware", function() {
 
       before(function() {
-        scriptPipe = AssetPipe.script()
+        var assetPipe = new AssetPipe()
+        assetPipe.addFiles(__dirname + "/scripts/")
+
+        scriptPipe = assetPipe.script()
           .file(__dirname + "/:type/:modelName.js")
           .url("/javascripts/:type/:modelName.js")
       })
@@ -37,9 +39,10 @@ describe("AssetPipeline", function() {
     })
     describe("with middleware", function() {
       before(function() {
-        AssetPipe.addFiles(__dirname + "/scripts/")
+        var assetPipe = new AssetPipe()
+        assetPipe.addFiles(__dirname + "/scripts/")
 
-        scriptPipe = AssetPipe.script()
+        scriptPipe = assetPipe.script()
           .file(__dirname + "/:type/:modelName.js")
           .url("/javascripts/:type/:modelName.js")
           .process(function(file, name, url, next) {

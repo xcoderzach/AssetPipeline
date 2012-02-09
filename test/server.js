@@ -1,12 +1,12 @@
-var AssetServer = require("../lib/server_middleware")
+var AssetPipe = require("../lib/index")
   , path = require("path")
   , fs = require("fs")
   , request = require("superagent")
-  , testPipe = require("./pipes/test_pipe.js")
   , connect = require("connect")
   , server
+  , testPipe = require("./pipes/test_pipe.js")
 
-server = connect(AssetServer(testPipe))
+server = connect(testPipe.server.middleware())
 server.listen(3001)
 
 describe("AssetServer", function() { 
