@@ -22,7 +22,7 @@ describe("AssetPipeline", function() {
       })
       describe(".get()", function() {
         it("should output the files", function(done) {
-          var script = scriptPipe.get("/javascripts/scripts/derp.js", function(script) {
+          var script = scriptPipe.get("/javascripts/scripts/derp.js", function(err, script) {
             script.should.equal("derp()\n")
             done()
           })
@@ -42,13 +42,13 @@ describe("AssetPipeline", function() {
         scriptPipe = AssetPipe.script()
           .file(__dirname + "/:type/:modelName.js")
           .url("/javascripts/:type/:modelName.js")
-          .process(function(file, name, next) {
-             next("(function() {\n" + file + "}())\n") 
+          .process(function(file, name, url, next) {
+             next(null, "(function() {\n" + file + "}())\n") 
           })
       }) 
       describe(".get()", function() {
         it("the file should be wrapped", function(done) {
-          var script = scriptPipe.get("/javascripts/scripts/derp.js", function(script) {
+          var script = scriptPipe.get("/javascripts/scripts/derp.js", function(err, script) {
             script.should.equal(fs.readFileSync(__dirname + "/output/wrapped.js", "utf8"))
             done()
           })
