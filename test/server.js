@@ -1,6 +1,4 @@
-var AssetPipe = require("../lib/index")
-  , path = require("path")
-  , fs = require("fs")
+var fs = require("fs")
   , request = require("superagent")
   , connect = require("connect")
   , server

@@ -3,9 +3,15 @@ var AssetPipe = require("../../lib/index")
 
 module.exports = assetPipe = new AssetPipe()
 
-var scriptPipe = assetPipe.script()
+var scriptPipeline = assetPipe.script()
+var stylesheetPipeline = assetPipe.stylesheet()
 
-scriptPipe
+scriptPipeline
   .root(__dirname + "/../scripts/")
   .addFiles(__dirname + "/../scripts/")
   .process(ModuleProcessor(__dirname + "/../.."))
+
+stylesheetPipeline = assetPipe.stylesheet()
+  .root(__dirname + "/stylesheets")
+  .addFiles(__dirname + "/stylesheets/")
+  .urlPrefix("/css") 
