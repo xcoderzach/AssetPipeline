@@ -9,22 +9,21 @@ describe("AssetPipeline", function() {
 
       before(function() {
         var assetPipe = new AssetPipe()
-        assetPipe.addFiles(__dirname + "/scripts/")
 
         scriptPipe = assetPipe.script()
-          .file(__dirname + "/:type/:modelName.js")
-          .url("/javascripts/:type/:modelName.js")
+          .root(__dirname + "/scripts")
+          .addFiles(__dirname + "/scripts/")
       })
       describe(".getScripts()", function() {
         it("should get a list of matching files", function() {
           var scripts = scriptPipe.getScriptFiles()
-          scripts.length.should.equal(2)
+          scripts.length.should.equal(3)
           scripts.indexOf(path.resolve("./scripts/derp.js"))
         })
       })
       describe(".get()", function() {
         it("should output the files", function(done) {
-          var script = scriptPipe.get("/javascripts/scripts/derp.js", function(err, script) {
+          var script = scriptPipe.get("/modules/derp.js", function(err, script) {
             script.should.equal("derp()\n")
             done()
           })
@@ -40,18 +39,17 @@ describe("AssetPipeline", function() {
     describe("with middleware", function() {
       before(function() {
         var assetPipe = new AssetPipe()
-        assetPipe.addFiles(__dirname + "/scripts/")
 
         scriptPipe = assetPipe.script()
-          .file(__dirname + "/:type/:modelName.js")
-          .url("/javascripts/:type/:modelName.js")
+          .root(__dirname + "/scripts")
+          .addFiles(__dirname + "/scripts")
           .process(function(file, name, url, next) {
              next(null, "(function() {\n" + file + "}())\n") 
           })
       }) 
       describe(".get()", function() {
         it("the file should be wrapped", function(done) {
-          var script = scriptPipe.get("/javascripts/scripts/derp.js", function(err, script) {
+          var script = scriptPipe.get("/modules/derp.js", function(err, script) {
             script.should.equal(fs.readFileSync(__dirname + "/output/wrapped.js", "utf8"))
             done()
           })

@@ -6,6 +6,6 @@ module.exports = assetPipe = new AssetPipe()
 var scriptPipe = assetPipe.script()
 
 scriptPipe
-  .file(__dirname + "/../scripts/:type/:modelName.js")
-  .url("/javascripts/:type/:modelName.js")
+  .root(__dirname + "/../scripts/")
+  .addFiles(__dirname + "/../scripts/")
   .process(ModuleProcessor(__dirname + "/../.."))
