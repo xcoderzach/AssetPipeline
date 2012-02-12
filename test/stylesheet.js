@@ -12,9 +12,9 @@ server.listen(3001)
 describe("AssetPipeline", function() {
   describe("loading a stylesheet", function() {
     it("should convert the .styl to .css", function(done) {
-      request.get('localhost:3001/modules/models/user.js', function(res) {
-        res.headers['content-type'].should.equal("text/javascript")
-        res.text.should.equal(fs.readFileSync(__dirname + "/output/user_javascript_output.js", "utf8"))
+      request.get('localhost:3001/css/test.css', function(res) {
+        res.headers['content-type'].should.equal("text/css")
+        res.text.should.equal(fs.readFileSync(__dirname + "/output/test.css", "utf8"))
         done()
       }) 
     })

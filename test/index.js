@@ -56,22 +56,5 @@ describe("AssetPipeline", function() {
         })
       })
     })
-    describe("an npm module", function() {
-      before(function() {
-        var assetPipe = new AssetPipe()
-
-        scriptPipe = assetPipe.script()
-          .root(__dirname + "/scripts")
-          .addFiles("underscore")
-      }) 
-      describe(".get()", function() {
-        it("the file should be wrapped", function(done) {
-          var script = scriptPipe.get("underscore", function(err, script) {
-            script.should.equal(fs.readFileSync(require.resolve("underscore"), "utf8"))
-            done()
-          })
-        })
-      })
-    })
   })
 })
