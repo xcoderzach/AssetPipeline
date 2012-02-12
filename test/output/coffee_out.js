@@ -1,4 +1,4 @@
-require.register("/test/scripts/test.coffee", function(module, exports, require, global) {
+require.register("/scripts/test.coffee", function(module, exports, require, global) {
 (function() {
   var herp;
 
