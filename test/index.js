@@ -24,7 +24,7 @@ describe("AssetPipeline", function() {
       describe(".get()", function() {
         it("should output the files", function(done) {
           var script = scriptPipe.get("/modules/derp.js", function(err, script) {
-            script.should.equal("derp()\n")
+            script.toString().should.equal("derp()\n")
             done()
           })
         })
@@ -44,7 +44,7 @@ describe("AssetPipeline", function() {
           .root(__dirname + "/scripts")
           .addFiles(__dirname + "/scripts")
           .process(function(file, name, url, next) {
-             next(null, "(function() {\n" + file + "}())\n") 
+             next(null, "(function() {\n" + file.toString() + "}())\n") 
           })
       }) 
       describe(".get()", function() {
