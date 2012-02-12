@@ -8,6 +8,7 @@ module.exports = assetPipe = new AssetPipe()
 var scriptPipeline = assetPipe.script()
 var coffeeScriptPipeline = assetPipe.script()
 var stylesheetPipeline = assetPipe.stylesheet()
+var imagePipeline = assetPipe.image()
 
 scriptPipeline
   .root(__dirname + "/../scripts/")
@@ -21,9 +22,13 @@ coffeeScriptPipeline
   .process(CoffeeScriptProcessor)
   .process(ModuleProcessor(__dirname + "/.."))
  
-stylesheetPipeline = assetPipe.stylesheet()
+stylesheetPipeline
   .fileExtension(".styl")
   .urlPrefix("/css") 
   .root(__dirname + "/../stylesheets")
   .addFiles(__dirname + "/../stylesheets/")
   .process(StylusProcessor)
+
+imagePipeline
+  .root(__dirname + "/../images")
+  .addFiles(__dirname + "/../images")
