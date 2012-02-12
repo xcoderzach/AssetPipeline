@@ -15,14 +15,14 @@ scriptPipeline
   .process(ModuleProcessor(__dirname + "/.."))
 
 coffeeScriptPipeline
-  .fileExtension("coffee")
+  .fileExtension(".coffee")
   .root(__dirname + "/../scripts/")
   .addFiles(__dirname + "/../scripts/")
   .process(CoffeeScriptProcessor)
   .process(ModuleProcessor(__dirname + "/.."))
  
 stylesheetPipeline = assetPipe.stylesheet()
-  .fileExtension("styl")
+  .fileExtension(".styl")
   .urlPrefix("/css") 
   .root(__dirname + "/../stylesheets")
   .addFiles(__dirname + "/../stylesheets/")
