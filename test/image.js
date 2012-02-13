@@ -13,7 +13,6 @@ describe("AssetPipeline", function() {
   describe("loading a stylesheet", function() {
     it("should serve the image", function(done) {
       request.get('localhost:3001/images/test.png', function(res) {
-        console.log(res.text)
         res.headers['content-type'].should.equal("image/png")
         //not sure how to check that its the right content, it has however
         //been manually verified :-S
