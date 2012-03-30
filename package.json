@@ -1,6 +1,6 @@
 {
-  "name": "thing",
-  "description": "",
+  "name": "AssetPipeline",
+  "description": "Provides Assets",
   "version": "0.0.1",
   "author": "Mukari <dev@mukari.com>",
   "dependencies": {
