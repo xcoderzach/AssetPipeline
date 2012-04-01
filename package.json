@@ -5,6 +5,7 @@
   "author": "Mukari <dev@mukari.com>",
   "dependencies": {
     "connect": "1.8.3",
+    "mime": "x.x.x",
     "underscore": "1.2.3"
   },
   "devDependencies": {
