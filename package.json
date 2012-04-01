@@ -6,6 +6,8 @@
   "dependencies": {
     "connect": "1.8.3",
     "mime": "x.x.x",
+    "stylus": "x.x.x",
+    "coffee-script": "x.x.x",
     "underscore": "1.2.3"
   },
   "devDependencies": {
