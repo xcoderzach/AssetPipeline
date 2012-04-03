@@ -14,13 +14,6 @@ describe("AssetPipeline", function() {
           .root(__dirname + "/scripts")
           .addFiles(__dirname + "/scripts/")
       })
-      describe(".getScripts()", function() {
-        it("should get a list of matching files", function() {
-          var scripts = scriptPipe.getScriptFiles()
-          scripts.length.should.equal(3)
-          scripts.indexOf(path.resolve("./scripts/derp.js"))
-        })
-      })
       describe(".get()", function() {
         it("should output the files", function(done) {
           var script = scriptPipe.get("/modules/derp.js", function(err, script) {
